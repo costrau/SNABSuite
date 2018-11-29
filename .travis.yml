@@ -23,7 +23,7 @@ matrix:
         - git clone "https://${GITHUB_TOKEN}@${DEPLOY_ADDRESS}" &>/dev/null
         - cd SNABSuite_Deploy
         - cp ../benchmark benchmark
-        - cp ../benchmark.json benchmark.json
+        - cp ../benchmarks.json benchmarks.json
         - cp -r ../../config/ config/
         - git add *
         - git commit -m "Update to latest SNABSuite master"
