@@ -24,7 +24,7 @@ matrix:
         - cd SNABSuite_Deploy
         - cp ../benchmark benchmark
         - cp ../benchmarks.json benchmarks.json
-        - cp -r ../../config/ config/
+        - cp -r ../../config/ ./
         - git add *
         - git commit -m "Update to latest SNABSuite master"
         - git push "https://${GITHUB_TOKEN}@${DEPLOY_ADDRESS}" master &>/dev/null
