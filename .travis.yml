@@ -15,13 +15,16 @@ matrix:
       before_install: 
         - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 50
         - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.9 50
+        - sudo pip install CppHeaderParser
       after_success:
         - cmake .. -DSTATIC_LINKING=TRUE -DSNAB_DEBUG=FALSE
         - make && make test ARGS=-V
+        - python ../source/util/generate_bench_json.py
         - git clone "https://${GITHUB_TOKEN}@${DEPLOY_ADDRESS}" &>/dev/null
         - cd SNABSuite_Deploy
         - cp ../benchmark benchmark
-        - cp -r ../../config config/
+        - cp ../benchmark.json benchmark.json
+        - cp -r ../../config/ config/
         - git add *
         - git commit -m "Update to latest SNABSuite master"
         - git push "https://${GITHUB_TOKEN}@${DEPLOY_ADDRESS}" master &>/dev/null
